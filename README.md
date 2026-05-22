@@ -1,4 +1,24 @@
-# Hailuo AI API SDK for RunAPI
+<p align="center">
+  <a href="https://runapi.ai"><img src="https://runapi.ai/icon.svg" height="56" alt="RunAPI"></a>
+</p>
+
+<h3 align="center">
+  <a href="https://github.com/runapi-ai/hailuo-sdk">Hailuo API SDK for RunAPI</a>
+</h3>
+
+<p align="center">
+  Hailuo API SDKs for JavaScript, Ruby, and Go on RunAPI.
+</p>
+
+<div align="center">
+
+[![npm](https://img.shields.io/npm/v/@runapi.ai/hailuo)](https://www.npmjs.com/package/@runapi.ai/hailuo)
+[![RubyGems](https://img.shields.io/gem/v/runapi-hailuo)](https://rubygems.org/gems/runapi-hailuo)
+[![Go Reference](https://pkg.go.dev/badge/github.com/runapi-ai/hailuo-sdk/go.svg)](https://pkg.go.dev/github.com/runapi-ai/hailuo-sdk/go)
+[![License](https://img.shields.io/github/license/runapi-ai/hailuo-sdk)](https://github.com/runapi-ai/hailuo-sdk/blob/main/LICENSE)
+
+</div>
+<br/>
 
 The hailuo ai api SDK packages JavaScript, Ruby, and Go clients for Hailuo on RunAPI. Use this hailuo ai api SDK for text-to-video, image-to-video, video-to-video, animation, and editing workflows that need typed installs, JSON request bodies, task polling, and consistent RunAPI errors across services.
 
