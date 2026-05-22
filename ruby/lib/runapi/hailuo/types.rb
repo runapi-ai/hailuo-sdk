@@ -7,8 +7,8 @@ module RunApi
       IMAGE_TO_VIDEO_MODELS = %w[
         hailuo-02-image-to-video-pro
         hailuo-02-image-to-video-standard
-        hailuo-2-3-image-to-video-pro
-        hailuo-2-3-image-to-video-standard
+        hailuo-2.3-image-to-video-pro
+        hailuo-2.3-image-to-video-standard
       ].freeze
       DURATIONS = %w[6 10].freeze
       IMAGE_02_RESOLUTIONS = %w[512P 768P].freeze

@@ -7,8 +7,8 @@ export type HailuoTextToVideoModel =
 export type HailuoImageToVideoModel =
   | 'hailuo-02-image-to-video-pro'
   | 'hailuo-02-image-to-video-standard'
-  | 'hailuo-2-3-image-to-video-pro'
-  | 'hailuo-2-3-image-to-video-standard';
+  | 'hailuo-2.3-image-to-video-pro'
+  | 'hailuo-2.3-image-to-video-standard';
 
 export type HailuoDuration = '6' | '10';
 export type HailuoImage02Resolution = '512P' | '768P';

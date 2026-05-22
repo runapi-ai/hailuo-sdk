@@ -1,40 +1,81 @@
 ---
 name: hailuo
-description: hailuo ai api skill for RunAPI. Use when the user asks for hailuo ai api SDK setup, CLI usage, pricing, model docs, or agent integration. Learn more at https://runapi.ai/models/hailuo.
-documentation: https://runapi.ai/models/hailuo
-provider_page: https://runapi.ai/providers/minimax
-catalog: https://runapi.ai/models
+description: Generate and edit video with Hailuo through RunAPI. Use when the user asks an agent to create, edit, or transform video with Hailuo. Default to the RunAPI CLI for one-off generation; use SDKs only when the user is integrating RunAPI into an app or backend.
+documentation: https://runapi.ai/models/hailuo.md
+provider_page: https://runapi.ai/providers/minimax.md
+catalog: https://runapi.ai/models.md
+metadata:
+  openclaw:
+    homepage: https://runapi.ai/models/hailuo
+    requires:
+      bins:
+      - runapi
+    install:
+    - kind: brew
+      formula: runapi-ai/tap/runapi
+      bins:
+      - runapi
+    envVars:
+    - name: RUNAPI_API_KEY
+      required: false
+      description: Optional RunAPI API key; agents should prefer environment auth or saved CLI config. Browser login is interactive fallback only.
 ---
 
-# hailuo ai api Skill for RunAPI
+# Hailuo on RunAPI
 
-Use this skill for hailuo ai api work through RunAPI. Learn more at https://runapi.ai/models/hailuo.
+Generate and edit video with Hailuo through RunAPI. The default path for one-off agent tasks is the `runapi` CLI; SDKs are for application integration.
 
-## When to use
+## Routing decision
 
-- The user asks for hailuo ai api integration, examples, SDK installation, CLI calls, or agent workflow setup.
-- The user needs RunAPI SDK or CLI guidance for Hailuo.
-- The user asks about Hailuo pricing, rate limits, commercial usage, or variant choice.
+- One-off generation, editing, or transformation for the user → use the **CLI path** with the `runapi` binary.
+- Building an app, backend, worker, library, or production codebase → use the **SDK integration path**.
 
-## Workflow
+## CLI path
 
-- Prefer the SDK repository at https://github.com/runapi-ai/hailuo-sdk for application code.
-- Use https://runapi.ai/docs#sdk-hailuo for SDK docs and https://runapi.ai/docs#hailuo for model endpoint details.
-- For CLI flows, pass JSON request bodies through `--input` or `--input-file`; do not invent hand-written flags for every model parameter.
-- Keep API keys in `RUNAPI_API_KEY` or the RunAPI CLI config; never commit secrets.
+The `runapi` binary is the runtime dependency. Run `runapi auth status` first. For agents and headless runs, prefer `RUNAPI_API_KEY` or import it into saved config with `printf '%s' "$RUNAPI_API_KEY" | runapi auth import-token --token -`. Use `runapi login` only when the user explicitly wants interactive browser auth.
 
-## Routing
+Inspect the available actions and request fields with CLI help:
 
-- Main hailuo ai api page: https://runapi.ai/models/hailuo
-- Default pricing/rate-limit/commercial page: https://runapi.ai/models/hailuo/02-text-to-video-pro
-- Provider comparison: https://runapi.ai/providers/minimax
-- Full catalog: https://runapi.ai/models
+```shell
+runapi hailuo --help
+runapi hailuo text-to-video --help
+```
+
+Run a one-off task (synchronous — polls until the task completes):
+
+```shell
+runapi hailuo text-to-video --input-file request.json
+```
+
+Submit asynchronously and poll separately:
+
+```shell
+runapi hailuo text-to-video --async --input-file request.json
+runapi wait <task-id> --service hailuo --action text-to-video
+```
+
+Available actions: `text-to-video`, `image-to-video`.
+
+## SDK integration path
+
+When integrating Hailuo into an app, backend, worker, or library — not for one-off tasks — use a RunAPI SDK package:
+
+- JavaScript / TypeScript: `@runapi.ai/hailuo`
+- Ruby: `runapi-hailuo`
+- Go: `github.com/runapi-ai/hailuo-sdk/go`
+
+## References
+
+- Model overview, pricing, and rate limits: https://runapi.ai/models/hailuo.md
+- Provider comparison: https://runapi.ai/providers/minimax.md
+- Full model catalog: https://runapi.ai/models.md
 
 ## Variants
 
-- [02 text to video pro](https://runapi.ai/models/hailuo/02-text-to-video-pro)
-- [02 text to video standard](https://runapi.ai/models/hailuo/02-text-to-video-standard)
-- [02 image to video pro](https://runapi.ai/models/hailuo/02-image-to-video-pro)
-- [02 image to video standard](https://runapi.ai/models/hailuo/02-image-to-video-standard)
-- [2.3 image to video pro](https://runapi.ai/models/hailuo/2.3-image-to-video-pro)
-- [2.3 image to video standard](https://runapi.ai/models/hailuo/2.3-image-to-video-standard)
+- [02 text to video pro](https://runapi.ai/models/hailuo/02-text-to-video-pro.md)
+- [02 text to video standard](https://runapi.ai/models/hailuo/02-text-to-video-standard.md)
+- [02 image to video pro](https://runapi.ai/models/hailuo/02-image-to-video-pro.md)
+- [02 image to video standard](https://runapi.ai/models/hailuo/02-image-to-video-standard.md)
+- [2.3 image to video pro](https://runapi.ai/models/hailuo/2.3-image-to-video-pro.md)
+- [2.3 image to video standard](https://runapi.ai/models/hailuo/2.3-image-to-video-standard.md)
+

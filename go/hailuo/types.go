@@ -8,8 +8,8 @@ const (
 	ModelTextToVideoStandard TextToVideoModel  = "hailuo-02-text-to-video-standard"
 	ModelImageToVideoPro02   ImageToVideoModel = "hailuo-02-image-to-video-pro"
 	ModelImageToVideoStd02   ImageToVideoModel = "hailuo-02-image-to-video-standard"
-	ModelImageToVideoPro23   ImageToVideoModel = "hailuo-2-3-image-to-video-pro"
-	ModelImageToVideoStd23   ImageToVideoModel = "hailuo-2-3-image-to-video-standard"
+	ModelImageToVideoPro23   ImageToVideoModel = "hailuo-2.3-image-to-video-pro"
+	ModelImageToVideoStd23   ImageToVideoModel = "hailuo-2.3-image-to-video-standard"
 )
 
 type Video struct {

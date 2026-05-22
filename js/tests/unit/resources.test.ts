@@ -48,7 +48,7 @@ describe('Hailuo resources', () => {
     const imageToVideo = new ImageToVideo(mockHttp);
 
     await imageToVideo.create({
-      model: 'hailuo-2-3-image-to-video-standard',
+      model: 'hailuo-2.3-image-to-video-standard',
       prompt: 'Animate the portrait',
       image_url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
       resolution: '768P',
@@ -56,7 +56,7 @@ describe('Hailuo resources', () => {
 
     expect(mockHttp.request).toHaveBeenCalledWith('POST', '/api/v1/hailuo/image_to_video', {
       body: {
-        model: 'hailuo-2-3-image-to-video-standard',
+        model: 'hailuo-2.3-image-to-video-standard',
         prompt: 'Animate the portrait',
         image_url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
         resolution: '768P',
