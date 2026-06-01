@@ -10,9 +10,9 @@ export type HailuoImageToVideoModel =
   | 'hailuo-2.3-image-to-video-pro'
   | 'hailuo-2.3-image-to-video-standard';
 
-export type HailuoDuration = '6' | '10';
-export type HailuoImage02Resolution = '512P' | '768P';
-export type HailuoImage23Resolution = '768P' | '1080P';
+export type HailuoDuration = 6 | 10;
+export type HailuoImage02Resolution = '512p' | '768p';
+export type HailuoImage23Resolution = '768p' | '1080p';
 export type HailuoImageResolution = HailuoImage02Resolution | HailuoImage23Resolution;
 
 interface TaskCommonParams {
@@ -22,20 +22,20 @@ interface TaskCommonParams {
 export interface HailuoTextToVideoParams extends TaskCommonParams {
   model: HailuoTextToVideoModel;
   prompt: string;
-  duration?: HailuoDuration | 6 | 10;
+  duration_seconds?: HailuoDuration;
   prompt_optimizer?: boolean;
-  nsfw_checker?: boolean;
+  enable_safety_checker?: boolean;
 }
 
 export interface HailuoImageToVideoParams extends TaskCommonParams {
   model: HailuoImageToVideoModel;
   prompt: string;
-  image_url: string;
-  end_image_url?: string;
-  duration?: HailuoDuration | 6 | 10;
-  resolution?: HailuoImageResolution;
+  first_frame_image_url: string;
+  last_frame_image_url?: string;
+  duration_seconds?: HailuoDuration;
+  output_resolution?: HailuoImageResolution;
   prompt_optimizer?: boolean;
-  nsfw_checker?: boolean;
+  enable_safety_checker?: boolean;
 }
 
 export interface TaskCreateResponse {

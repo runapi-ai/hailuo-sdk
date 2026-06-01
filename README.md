@@ -20,7 +20,7 @@
 </div>
 <br/>
 
-The hailuo ai api SDK packages JavaScript, Ruby, and Go clients for Hailuo on RunAPI. Use this hailuo ai api SDK for text-to-video, image-to-video, video-to-video, animation, and editing workflows that need typed installs, JSON request bodies, task polling, and consistent RunAPI errors across services.
+The hailuo ai api SDK packages JavaScript, Ruby, and Go clients for Hailuo on RunAPI. Use this hailuo ai api SDK for text-to-video and image-to-video workflows that need typed installs, JSON request bodies, task polling, and consistent RunAPI errors across services.
 
 Hailuo belongs to the MiniMax catalog on RunAPI. The public model page is https://runapi.ai/models/hailuo; variant pages below carry pricing, rate-limit, and commercial-usage details. The public `hailuo-sdk` repository groups the JavaScript, Ruby, and Go packages for this model.
 

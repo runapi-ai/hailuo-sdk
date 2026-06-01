@@ -32,22 +32,22 @@ type VideoTaskResponse struct {
 }
 
 type TextToVideoParams struct {
-	Model           TextToVideoModel `json:"model" help:"required; hailuo-02-text-to-video-pro or hailuo-02-text-to-video-standard"`
-	Prompt          string           `json:"prompt" help:"required; up to 1500 characters"`
-	Duration        string           `json:"duration,omitempty" help:"optional; 6 or 10, standard model only"`
-	PromptOptimizer *bool            `json:"prompt_optimizer,omitempty" help:"optional; enable Hailuo prompt optimizer"`
-	NSFWChecker     *bool            `json:"nsfw_checker,omitempty" help:"optional; content filtering, default false"`
-	CallbackURL     string           `json:"callback_url,omitempty" help:"optional; URL that receives completion callback"`
+	Model               TextToVideoModel `json:"model" help:"required; model slug"`
+	Prompt              string           `json:"prompt" help:"required; up to 1500 characters"`
+	DurationSeconds     int              `json:"duration_seconds,omitempty" help:"optional; duration in seconds"`
+	PromptOptimizer     *bool            `json:"prompt_optimizer,omitempty" help:"optional; enable Hailuo prompt optimizer"`
+	EnableSafetyChecker *bool            `json:"enable_safety_checker,omitempty" help:"optional; content safety check toggle"`
+	CallbackURL         string           `json:"callback_url,omitempty" help:"optional; URL that receives completion callback"`
 }
 
 type ImageToVideoParams struct {
-	Model           ImageToVideoModel `json:"model" help:"required; one of the supported Hailuo image-to-video models"`
-	Prompt          string            `json:"prompt" help:"required; 1500 chars on 02 models, 5000 on 2.3 models"`
-	ImageURL        string            `json:"image_url" help:"required; publicly accessible image URL"`
-	EndImageURL     string            `json:"end_image_url,omitempty" help:"optional; 02 models only"`
-	Duration        string            `json:"duration,omitempty" help:"optional; 6 or 10 on standard/2.3 models"`
-	Resolution      string            `json:"resolution,omitempty" help:"optional; 512P/768P on 02 standard, 768P/1080P on 2.3"`
-	PromptOptimizer *bool             `json:"prompt_optimizer,omitempty" help:"optional; 02 models only"`
-	NSFWChecker     *bool             `json:"nsfw_checker,omitempty" help:"optional; content filtering, default false"`
-	CallbackURL     string            `json:"callback_url,omitempty" help:"optional; URL that receives completion callback"`
+	Model               ImageToVideoModel `json:"model" help:"required; model slug"`
+	Prompt              string            `json:"prompt" help:"required; 1500 chars on 02 models, 5000 on 2.3 models"`
+	FirstFrameImageURL  string            `json:"first_frame_image_url" help:"required; first-frame image URL"`
+	LastFrameImageURL   string            `json:"last_frame_image_url,omitempty" help:"optional; last-frame image URL, 02 models only"`
+	DurationSeconds     int               `json:"duration_seconds,omitempty" help:"optional; duration in seconds"`
+	OutputResolution    string            `json:"output_resolution,omitempty" help:"optional; output resolution"`
+	PromptOptimizer     *bool             `json:"prompt_optimizer,omitempty" help:"optional; 02 models only"`
+	EnableSafetyChecker *bool             `json:"enable_safety_checker,omitempty" help:"optional; content safety check toggle"`
+	CallbackURL         string            `json:"callback_url,omitempty" help:"optional; URL that receives completion callback"`
 }

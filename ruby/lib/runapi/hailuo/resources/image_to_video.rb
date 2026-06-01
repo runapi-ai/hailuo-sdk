@@ -36,35 +36,35 @@ module RunApi
           model = param(params, :model)
           raise Core::ValidationError, "model is required" unless Types::IMAGE_TO_VIDEO_MODELS.include?(model)
           raise Core::ValidationError, "prompt is required" unless param(params, :prompt)
-          raise Core::ValidationError, "image_url is required" unless param(params, :image_url)
+          raise Core::ValidationError, "first_frame_image_url is required" unless param(params, :first_frame_image_url)
 
-          duration = param(params, :duration)
-          resolution = param(params, :resolution)
+          duration_seconds = param(params, :duration_seconds)
+          output_resolution = param(params, :output_resolution)
 
-          if duration && !Types::DURATIONS.include?(duration.to_s)
-            raise Core::ValidationError, "duration must be one of: #{Types::DURATIONS.join(", ")}"
+          if duration_seconds && !Types::DURATIONS.include?(duration_seconds)
+            raise Core::ValidationError, "duration_seconds must be one of: #{Types::DURATIONS.join(", ")}"
           end
 
           case model
           when "hailuo-02-image-to-video-pro"
-            raise Core::ValidationError, "duration is not supported for #{model}" if duration
-            raise Core::ValidationError, "resolution is not supported for #{model}" if resolution
+            raise Core::ValidationError, "duration_seconds is not supported for #{model}" if duration_seconds
+            raise Core::ValidationError, "output_resolution is not supported for #{model}" if output_resolution
           when "hailuo-02-image-to-video-standard"
-            validate_resolution!(resolution, Types::IMAGE_02_RESOLUTIONS) if resolution
+            validate_output_resolution!(output_resolution, Types::IMAGE_02_RESOLUTIONS) if output_resolution
           else
-            validate_resolution!(resolution, Types::IMAGE_23_RESOLUTIONS) if resolution
-            raise Core::ValidationError, "end_image_url is not supported for #{model}" if param(params, :end_image_url)
+            validate_output_resolution!(output_resolution, Types::IMAGE_23_RESOLUTIONS) if output_resolution
+            raise Core::ValidationError, "last_frame_image_url is not supported for #{model}" if param(params, :last_frame_image_url)
             raise Core::ValidationError, "prompt_optimizer is not supported for #{model}" if param(params, :prompt_optimizer)
-            if duration.to_s == "10" && resolution.to_s == "1080P"
-              raise Core::ValidationError, "1080P does not support 10-second duration"
+            if duration_seconds == 10 && output_resolution.to_s == "1080p"
+              raise Core::ValidationError, "1080p does not support 10-second duration"
             end
           end
         end
 
-        def validate_resolution!(resolution, allowed)
-          return if allowed.include?(resolution.to_s)
+        def validate_output_resolution!(output_resolution, allowed)
+          return if allowed.include?(output_resolution.to_s)
 
-          raise Core::ValidationError, "resolution must be one of: #{allowed.join(", ")}"
+          raise Core::ValidationError, "output_resolution must be one of: #{allowed.join(", ")}"
         end
       end
     end

@@ -34,7 +34,7 @@ Generate and edit video with Hailuo through RunAPI. The default path for one-off
 
 The `runapi` binary is the runtime dependency. Run `runapi auth status` first. For agents and headless runs, prefer `RUNAPI_API_KEY` or import it into saved config with `printf '%s' "$RUNAPI_API_KEY" | runapi auth import-token --token -`. Use `runapi login` only when the user explicitly wants interactive browser auth.
 
-Inspect the available actions and request fields with CLI help:
+Inspect the available commands and request fields with CLI help:
 
 ```shell
 runapi hailuo --help
@@ -54,7 +54,7 @@ runapi hailuo text-to-video --async --input-file request.json
 runapi wait <task-id> --service hailuo --action text-to-video
 ```
 
-Available actions: `text-to-video`, `image-to-video`.
+Available commands: `text-to-video`, `image-to-video`.
 
 ## SDK integration path
 

@@ -43,23 +43,23 @@ describe('Hailuo resources', () => {
     expect(result.videos?.[0]?.url).toBe('https://tempfile.runapi.ai/video.mp4');
   });
 
-  it('creates image-to-video with image_url', async () => {
+  it('creates image-to-video with first_frame_image_url', async () => {
     vi.mocked(mockHttp.request).mockResolvedValueOnce({ id: 'task-2' });
     const imageToVideo = new ImageToVideo(mockHttp);
 
     await imageToVideo.create({
       model: 'hailuo-2.3-image-to-video-standard',
       prompt: 'Animate the portrait',
-      image_url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
-      resolution: '768P',
+      first_frame_image_url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+      output_resolution: '768p',
     });
 
     expect(mockHttp.request).toHaveBeenCalledWith('POST', '/api/v1/hailuo/image_to_video', {
       body: {
         model: 'hailuo-2.3-image-to-video-standard',
         prompt: 'Animate the portrait',
-        image_url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
-        resolution: '768P',
+        first_frame_image_url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+        output_resolution: '768p',
       },
     });
   });

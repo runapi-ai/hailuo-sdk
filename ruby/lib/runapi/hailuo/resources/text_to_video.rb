@@ -37,14 +37,14 @@ module RunApi
           raise Core::ValidationError, "model is required" unless Types::TEXT_TO_VIDEO_MODELS.include?(model)
           raise Core::ValidationError, "prompt is required" unless param(params, :prompt)
 
-          duration = param(params, :duration)
-          return unless duration
+          duration_seconds = param(params, :duration_seconds)
+          return unless duration_seconds
 
-          unless Types::DURATIONS.include?(duration.to_s)
-            raise Core::ValidationError, "duration must be one of: #{Types::DURATIONS.join(", ")}"
+          unless Types::DURATIONS.include?(duration_seconds)
+            raise Core::ValidationError, "duration_seconds must be one of: #{Types::DURATIONS.join(", ")}"
           end
           if model == "hailuo-02-text-to-video-pro"
-            raise Core::ValidationError, "duration is not supported for #{model}"
+            raise Core::ValidationError, "duration_seconds is not supported for #{model}"
           end
         end
       end
