@@ -3,6 +3,8 @@
 module RunApi
   module Hailuo
     module Resources
+      # Hailuo text-to-video resource.
+      # Generate video from a text prompt.
       class TextToVideo
         include RunApi::Core::ResourceHelpers
 
@@ -15,17 +17,29 @@ module RunApi
           @http = http
         end
 
+        # Generate a text-to-video task and wait until complete.
+        #
+        # @param params [Hash] text-to-video parameters
+        # @return [RunApi::Hailuo::Types::CompletedVideoTaskResponse] completed task with videos
         def run(**params)
           task = create(**params)
           poll_until_complete { get(task.id) }
         end
 
+        # Create a text-to-video task.
+        #
+        # @param params [Hash] text-to-video parameters
+        # @return [RunApi::Hailuo::Types::VideoTaskResponse] task creation result with id
         def create(**params)
           params = compact_params(params)
           validate_params!(params)
           request(:post, ENDPOINT, body: params)
         end
 
+        # Get text-to-video task status by task ID.
+        #
+        # @param id [String] task ID
+        # @return [RunApi::Hailuo::Types::VideoTaskResponse] current task status
         def get(id)
           request(:get, "#{ENDPOINT}/#{id}")
         end

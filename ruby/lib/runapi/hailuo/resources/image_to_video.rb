@@ -3,6 +3,8 @@
 module RunApi
   module Hailuo
     module Resources
+      # Hailuo image-to-video resource.
+      # Animate a still image into video guided by a text prompt and first-frame image.
       class ImageToVideo
         include RunApi::Core::ResourceHelpers
 
@@ -15,17 +17,29 @@ module RunApi
           @http = http
         end
 
+        # Generate an image-to-video task and wait until complete.
+        #
+        # @param params [Hash] image-to-video parameters
+        # @return [RunApi::Hailuo::Types::CompletedVideoTaskResponse] completed task with videos
         def run(**params)
           task = create(**params)
           poll_until_complete { get(task.id) }
         end
 
+        # Create an image-to-video task.
+        #
+        # @param params [Hash] image-to-video parameters
+        # @return [RunApi::Hailuo::Types::VideoTaskResponse] task creation result with id
         def create(**params)
           params = compact_params(params)
           validate_params!(params)
           request(:post, ENDPOINT, body: params)
         end
 
+        # Get image-to-video task status by task ID.
+        #
+        # @param id [String] task ID
+        # @return [RunApi::Hailuo::Types::VideoTaskResponse] current task status
         def get(id)
           request(:get, "#{ENDPOINT}/#{id}")
         end
