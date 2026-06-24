@@ -135,7 +135,7 @@ def test_run_narrows_completed_type():
 
 def test_rejects_unknown_model():
     client = HailuoClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="model is required"):
+    with pytest.raises(ValidationError, match="model must be one of: "):
         client.text_to_video.create(model="nope", prompt="hi there")
 
 

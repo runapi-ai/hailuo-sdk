@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Sequence
+from typing import Any, Dict
 
 from runapi.core import Resource, ValidationError
 
+from ..contract_gen import CONTRACT
 from ..types import (
-    DURATIONS,
-    IMAGE_02_RESOLUTIONS,
-    IMAGE_23_RESOLUTIONS,
-    IMAGE_TO_VIDEO_MODELS,
     CompletedVideoTaskResponse,
     VideoTaskResponse,
 )
@@ -61,42 +58,24 @@ class ImageToVideo(Resource):
         return self._request("get", f"{self.ENDPOINT}/{id}")
 
     def _validate_params(self, params: Dict[str, Any]) -> None:
-        model = params.get("model")
-        if model not in IMAGE_TO_VIDEO_MODELS:
-            raise ValidationError("model is required")
+        self._validate_contract(CONTRACT["image-to-video"], params)
+
         if not params.get("prompt"):
             raise ValidationError("prompt is required")
-        if not params.get("first_frame_image_url"):
-            raise ValidationError("first_frame_image_url is required")
 
+        model = params.get("model")
         duration_seconds = params.get("duration_seconds")
         output_resolution = params.get("output_resolution")
-
-        if duration_seconds and duration_seconds not in DURATIONS:
-            raise ValidationError(
-                f"duration_seconds must be one of: {', '.join(str(d) for d in DURATIONS)}"
-            )
 
         if model == "hailuo-02-image-to-video-pro":
             if duration_seconds:
                 raise ValidationError(f"duration_seconds is not supported for {model}")
             if output_resolution:
                 raise ValidationError(f"output_resolution is not supported for {model}")
-        elif model == "hailuo-02-image-to-video-standard":
-            if output_resolution:
-                self._validate_output_resolution(output_resolution, IMAGE_02_RESOLUTIONS)
-        else:
-            if output_resolution:
-                self._validate_output_resolution(output_resolution, IMAGE_23_RESOLUTIONS)
+        elif model in ("hailuo-2.3-image-to-video-pro", "hailuo-2.3-image-to-video-standard"):
             if params.get("last_frame_image_url"):
                 raise ValidationError(f"last_frame_image_url is not supported for {model}")
             if params.get("prompt_optimizer"):
                 raise ValidationError(f"prompt_optimizer is not supported for {model}")
             if duration_seconds == 10 and str(output_resolution) == "1080p":
                 raise ValidationError("1080p does not support 10-second duration")
-
-    @staticmethod
-    def _validate_output_resolution(output_resolution: Any, allowed: Sequence[str]) -> None:
-        if str(output_resolution) in allowed:
-            return
-        raise ValidationError(f"output_resolution must be one of: {', '.join(allowed)}")

@@ -47,17 +47,12 @@ module RunApi
         private
 
         def validate_params!(params)
-          model = param(params, :model)
-          raise Core::ValidationError, "model is required" unless Types::TEXT_TO_VIDEO_MODELS.include?(model)
+          validate_contract!(CONTRACT["text-to-video"], params)
+
           raise Core::ValidationError, "prompt is required" unless param(params, :prompt)
 
-          duration_seconds = param(params, :duration_seconds)
-          return unless duration_seconds
-
-          unless Types::DURATIONS.include?(duration_seconds)
-            raise Core::ValidationError, "duration_seconds must be one of: #{Types::DURATIONS.join(", ")}"
-          end
-          if model == "hailuo-02-text-to-video-pro"
+          model = param(params, :model)
+          if model == "hailuo-02-text-to-video-pro" && param(params, :duration_seconds)
             raise Core::ValidationError, "duration_seconds is not supported for #{model}"
           end
         end

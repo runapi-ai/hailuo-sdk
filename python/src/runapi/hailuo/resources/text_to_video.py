@@ -6,9 +6,8 @@ from typing import Any, Dict
 
 from runapi.core import Resource, ValidationError
 
+from ..contract_gen import CONTRACT
 from ..types import (
-    DURATIONS,
-    TEXT_TO_VIDEO_MODELS,
     CompletedVideoTaskResponse,
     VideoTaskResponse,
 )
@@ -59,19 +58,11 @@ class TextToVideo(Resource):
         return self._request("get", f"{self.ENDPOINT}/{id}")
 
     def _validate_params(self, params: Dict[str, Any]) -> None:
-        model = params.get("model")
-        if model not in TEXT_TO_VIDEO_MODELS:
-            raise ValidationError("model is required")
+        self._validate_contract(CONTRACT["text-to-video"], params)
+
         if not params.get("prompt"):
             raise ValidationError("prompt is required")
 
-        duration_seconds = params.get("duration_seconds")
-        if not duration_seconds:
-            return
-
-        if duration_seconds not in DURATIONS:
-            raise ValidationError(
-                f"duration_seconds must be one of: {', '.join(str(d) for d in DURATIONS)}"
-            )
-        if model == "hailuo-02-text-to-video-pro":
+        model = params.get("model")
+        if model == "hailuo-02-text-to-video-pro" and params.get("duration_seconds"):
             raise ValidationError(f"duration_seconds is not supported for {model}")
