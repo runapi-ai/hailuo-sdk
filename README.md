@@ -7,7 +7,7 @@
 </h3>
 
 <p align="center">
-  Hailuo API SDKs for JavaScript, Python, Ruby, Go, and Java on RunAPI.
+  Hailuo API SDKs for JavaScript, Python, Ruby, Go, Java, and PHP on RunAPI.
 </p>
 
 <div align="center">
@@ -22,9 +22,9 @@
 </div>
 <br/>
 
-The Hailuo API SDK packages JavaScript, Python, Ruby, Go, and Java clients for Hailuo on RunAPI. Use it for text-to-video and image-to-video workflows when your app needs typed request builders, predictable task polling, file upload helpers, account helpers, and consistent RunAPI errors.
+The Hailuo API SDK packages JavaScript, Python, Ruby, Go, Java, and PHP clients for Hailuo on RunAPI. Use it for text-to-video and image-to-video workflows when your app needs typed request builders, predictable task polling, file upload helpers, account helpers, and consistent RunAPI errors.
 
-Hailuo is listed in the RunAPI model catalog at https://runapi.ai/models/hailuo. Variant pages below carry pricing, rate-limit, and commercial-usage details. The public `hailuo-sdk` repository groups the language packages, examples, CI, and release tags for this model.
+Hailuo is listed in the RunAPI model catalog at https://runapi.ai/models/hailuo. Variant pages below carry pricing, rate-limit, and commercial-usage details. The public `hailuo-sdk` repository groups the non-PHP language packages, examples, CI, and release tags for this model. The PHP package is released from a split Composer repository.
 
 ## Install
 
@@ -39,7 +39,7 @@ Gradle:
 
 ```kotlin
 dependencies {
-  implementation("ai.runapi:runapi-hailuo:0.1.0")
+  implementation("ai.runapi:runapi-hailuo:0.1.1")
 }
 ```
 
@@ -49,7 +49,7 @@ Maven:
 <dependency>
   <groupId>ai.runapi</groupId>
   <artifactId>runapi-hailuo</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 
@@ -57,10 +57,12 @@ Use the Java BOM when installing multiple RunAPI Java modules:
 
 ```kotlin
 dependencies {
-  implementation(platform("ai.runapi:runapi-bom:0.1.0"))
+  implementation(platform("ai.runapi:runapi-bom:0.1.7"))
   implementation("ai.runapi:runapi-hailuo")
 }
 ```
+
+The PHP package is published from the split Composer repository as `runapi-ai/hailuo`; see https://github.com/runapi-ai/hailuo-php for PHP install and examples.
 
 ## What you can build
 
@@ -111,6 +113,7 @@ Most media endpoints are asynchronous. `create()` submits a task and returns its
 - SDK docs: https://runapi.ai/docs#sdk-hailuo
 - Product docs: https://runapi.ai/docs#hailuo
 - SDK repository: https://github.com/runapi-ai/hailuo-sdk
+- PHP package repository: https://github.com/runapi-ai/hailuo-php
 - Skill repository: https://github.com/runapi-ai/hailuo
 - Provider comparison: https://runapi.ai/providers/minimax
 - Full catalog: https://runapi.ai/models
@@ -135,7 +138,7 @@ RunAPI-generated file URLs are temporary. Download and store generated images, v
 
 ### Which package should I install for Hailuo work?
 
-Install the model package for your language: `@runapi.ai/hailuo` on npm, `runapi-hailuo` on PyPI, `runapi-hailuo` on RubyGems, `github.com/runapi-ai/hailuo-sdk/go`, or `ai.runapi:runapi-hailuo`. Install core SDK packages only when you are building shared SDK infrastructure.
+Install the model package for your language: `@runapi.ai/hailuo` on npm, `runapi-hailuo` on PyPI, `runapi-hailuo` on RubyGems, `github.com/runapi-ai/hailuo-sdk/go`, `ai.runapi:runapi-hailuo` on Maven Central, or `runapi-ai/hailuo` on Packagist. Install core SDK packages only when you are building shared SDK infrastructure.
 
 ### Where should public links point?
 
