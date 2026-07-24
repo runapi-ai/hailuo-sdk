@@ -13,7 +13,7 @@ gem install runapi-hailuo
 ## Quick start
 
 ```ruby
-require "runapi-hailuo"
+require "runapi/hailuo"
 
 client = RunApi::Hailuo::Client.new
 task = client.text_to_video.create(
