@@ -59,8 +59,8 @@ const result = await client.textToVideo.run({
 ## Routing
 
 - Model page: https://runapi.ai/models/hailuo
-- Product docs: https://runapi.ai/docs#hailuo
-- SDK docs: https://runapi.ai/docs#sdk-hailuo
+- Product docs: https://runapi.ai/docs/api/hailuo/text-to-video
+- SDK docs: https://runapi.ai/docs/resources/sdks
 - SDK repository: https://github.com/runapi-ai/hailuo-sdk
 - Pricing and rate limits: https://runapi.ai/models/hailuo/02-text-to-video-pro
 - Provider comparison: https://runapi.ai/providers/minimax

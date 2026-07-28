@@ -2,7 +2,7 @@
 
 The Hailuo Ruby SDK is the language-specific package for Hailuo on RunAPI. Use this package for video generation, animation, and video editing workflows when your application needs request bodies, task status lookup, and consistent RunAPI errors in Ruby.
 
-This README is the Ruby package guide inside the public `hailuo-sdk` repository. For the repository overview, start at `../README.md`; for model details, use https://runapi.ai/models/hailuo; for API reference, use https://runapi.ai/docs#hailuo; for SDK docs, use https://runapi.ai/docs#sdk-hailuo.
+This README is the Ruby package guide inside the public `hailuo-sdk` repository. For the repository overview, start at `../README.md`; for model details, use https://runapi.ai/models/hailuo; for API reference, use https://runapi.ai/docs/api/hailuo/text-to-video; for SDK docs, use https://runapi.ai/docs/resources/sdks.
 
 ## Install
 
@@ -17,7 +17,7 @@ require "runapi/hailuo"
 
 client = RunApi::Hailuo::Client.new
 task = client.text_to_video.create(
-  # Pass the Hailuo JSON request body from https://runapi.ai/docs#hailuo.
+  # Pass the Hailuo JSON request body from https://runapi.ai/docs/api/hailuo/text-to-video.
 )
 status = client.text_to_video.get(task.id)
 ```
@@ -33,8 +33,8 @@ Use Ruby keyword arguments and the `RunApi::Hailuo` error classes when building 
 ## Links
 
 - Model page: https://runapi.ai/models/hailuo
-- SDK docs: https://runapi.ai/docs#sdk-hailuo
-- Product docs: https://runapi.ai/docs#hailuo
+- SDK docs: https://runapi.ai/docs/resources/sdks
+- Product docs: https://runapi.ai/docs/api/hailuo/text-to-video
 - Pricing and rate limits: https://runapi.ai/models/hailuo/02-text-to-video-pro
 - Provider comparison: https://runapi.ai/providers/minimax
 - Full catalog: https://runapi.ai/models

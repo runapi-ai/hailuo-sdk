@@ -110,8 +110,8 @@ Most media endpoints are asynchronous. `create()` submits a task and returns its
 ## Public links
 
 - Model page: https://runapi.ai/models/hailuo
-- SDK docs: https://runapi.ai/docs#sdk-hailuo
-- Product docs: https://runapi.ai/docs#hailuo
+- SDK docs: https://runapi.ai/docs/resources/sdks
+- Product docs: https://runapi.ai/docs/api/hailuo/text-to-video
 - SDK repository: https://github.com/runapi-ai/hailuo-sdk
 - PHP package repository: https://github.com/runapi-ai/hailuo-php
 - Skill repository: https://github.com/runapi-ai/hailuo
