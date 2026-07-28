@@ -1,4 +1,4 @@
-import type { AsyncTaskStatus } from '@runapi.ai/core';
+import type { AsyncTaskStatus, TaskBillingResponse, TaskResponse } from '@runapi.ai/core';
 
 /**
  * Text-to-video model variants. Pro produces higher-fidelity output with longer generation time;
@@ -81,7 +81,7 @@ export interface HailuoImageToVideoParams extends TaskCommonParams {
 }
 
 /** Response from task creation containing the task identifier for polling. */
-export interface TaskCreateResponse {
+export interface TaskCreateResponse extends TaskBillingResponse {
   id: string;
 }
 
@@ -91,7 +91,7 @@ export interface MediaUrl {
 }
 
 /** Video generation task status and results. Poll until `status` reaches a terminal state. */
-export interface HailuoVideoResponse {
+export interface HailuoVideoResponse extends TaskResponse {
   id: string;
   status: AsyncTaskStatus;
   /** Generated video files, present when the task completes successfully. */

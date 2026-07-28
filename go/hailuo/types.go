@@ -1,5 +1,7 @@
 package hailuo
 
+import "github.com/runapi-ai/core-sdk/go/core"
+
 // TextToVideoModel selects the Hailuo text-to-video engine variant.
 type TextToVideoModel string
 
@@ -29,6 +31,7 @@ type Video struct {
 
 // AsyncTaskResponse carries the task ID, lifecycle status, and error for all Hailuo async operations.
 type AsyncTaskResponse struct {
+	core.TaskBillingFacts
 	ID     string `json:"id"`
 	Status string `json:"status"`
 	Error  string `json:"error,omitempty"`
