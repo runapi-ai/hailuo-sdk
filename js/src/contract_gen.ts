@@ -69,17 +69,7 @@ export const contract = {
           ]
         }
       }
-    },
-    "rules": [
-      {
-        "when": {
-          "model": "hailuo-02-image-to-video-pro"
-        },
-        "forbidden": [
-          "enable_safety_checker"
-        ]
-      }
-    ]
+    }
   },
   "text-to-video": {
     "models": [

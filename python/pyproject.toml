@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "runapi-hailuo"
-version = "0.2.2"
+version = "0.2.3"
 description = "RunAPI Hailuo SDK for text-to-video and image-to-video workflows in JavaScript, Python, Ruby, Go, Java, and PHP"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -19,7 +19,7 @@ Documentation = "https://runapi.ai/docs/resources/sdks"
 Source = "https://github.com/runapi-ai/hailuo-sdk"
 Issues = "https://github.com/runapi-ai/hailuo-sdk/issues"
 Changelog = "https://github.com/runapi-ai/hailuo-sdk/blob/main/CHANGELOG.md"
-"Release Notes" = "https://github.com/runapi-ai/hailuo-sdk/releases/tag/python%2Fv0.2.2"
+"Release Notes" = "https://github.com/runapi-ai/hailuo-sdk/releases/tag/python%2Fv0.2.3"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/runapi"]

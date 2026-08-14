@@ -4,7 +4,7 @@ Dir.chdir(__dir__) do
 
   Gem::Specification.new do |spec|
     spec.name = "runapi-hailuo"
-    spec.version = "0.2.9"
+    spec.version = "0.2.10"
     spec.metadata["runapi_slug"] = "hailuo"
     spec.authors = ["RunAPI"]
     spec.email = ["contact@runapi.ai"]

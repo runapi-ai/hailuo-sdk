@@ -1,5 +1,11 @@
 # Changelog
 
+## [js/v0.2.10](https://github.com/runapi-ai/hailuo-sdk/releases/tag/js%2Fv0.2.10), [ruby/v0.2.10](https://github.com/runapi-ai/hailuo-sdk/releases/tag/ruby%2Fv0.2.10), [go/v0.2.10](https://github.com/runapi-ai/hailuo-sdk/releases/tag/go%2Fv0.2.10), [python/v0.2.3](https://github.com/runapi-ai/hailuo-sdk/releases/tag/python%2Fv0.2.3) - 2026-08-14
+
+### Fixed
+- Accept enable_safety_checker for Hailuo 02 Pro image-to-video requests.
+
+
 ## [js/v0.2.9](https://github.com/runapi-ai/hailuo-sdk/releases/tag/js%2Fv0.2.9), [ruby/v0.2.9](https://github.com/runapi-ai/hailuo-sdk/releases/tag/ruby%2Fv0.2.9), [go/v0.2.9](https://github.com/runapi-ai/hailuo-sdk/releases/tag/go%2Fv0.2.9), [python/v0.2.2](https://github.com/runapi-ai/hailuo-sdk/releases/tag/python%2Fv0.2.2) - 2026-08-12
 
 ### Fixed

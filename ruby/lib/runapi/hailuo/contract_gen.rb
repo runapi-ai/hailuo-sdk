@@ -50,13 +50,7 @@ module RunApi
               "enum" => ["768p", "1080p"]
             }
           }
-        },
-        "rules" => [{
-          "when" => {
-            "model" => "hailuo-02-image-to-video-pro"
-          },
-          "forbidden" => ["enable_safety_checker"]
-        }]
+        }
       },
       "text-to-video" => {
         "models" => ["hailuo-02-text-to-video-pro", "hailuo-02-text-to-video-standard"],
