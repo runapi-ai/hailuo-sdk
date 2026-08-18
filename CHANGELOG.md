@@ -1,5 +1,11 @@
 # Changelog
 
+## [ruby/v0.2.11](https://github.com/runapi-ai/hailuo-sdk/releases/tag/ruby%2Fv0.2.11) - 2026-08-18
+
+### Changed
+- Allow Ruby clients to install the core SDK release that adds persistent Files and multipart Uploads alongside this model SDK.
+
+
 ## [js/v0.2.10](https://github.com/runapi-ai/hailuo-sdk/releases/tag/js%2Fv0.2.10), [ruby/v0.2.10](https://github.com/runapi-ai/hailuo-sdk/releases/tag/ruby%2Fv0.2.10), [go/v0.2.10](https://github.com/runapi-ai/hailuo-sdk/releases/tag/go%2Fv0.2.10), [python/v0.2.3](https://github.com/runapi-ai/hailuo-sdk/releases/tag/python%2Fv0.2.3) - 2026-08-14
 
 ### Fixed
