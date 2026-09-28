@@ -82,8 +82,7 @@ def test_create_posts_compacted_body():
             "post",
             "/api/v1/hailuo/text_to_video",
             {"model": "hailuo-02-text-to-video-standard", "prompt": "hello world", "duration_seconds": 6},
-        ),
-    ]
+        )]
     assert isinstance(result, VideoTaskResponse)
 
 
@@ -104,10 +103,8 @@ def test_image_to_video_create_posts_compacted_body():
                 "model": "hailuo-2.3-image-to-video-standard",
                 "prompt": "pan the camera",
                 "first_frame_image_url": "https://x/a.png",
-                "output_resolution": "768p",
-            },
-        ),
-    ]
+                "output_resolution": "768p"},
+        )]
 
 
 def test_get_fetches_by_id():
@@ -120,7 +117,7 @@ def test_get_fetches_by_id():
 def test_run_narrows_completed_type():
     fake = FakeHttp(
         {"id": "t1", "status": "pending"},
-        {"id": "t1", "status": "completed", "videos": [{"url": "https://x/y.mp4"}]},
+        {"id": "t1", "status": "completed", "usage": {"cost": 0.05}, "videos": [{"url": "https://x/y.mp4"}]},
     )
     client = HailuoClient(api_key="k", http_client=fake)
     result = client.text_to_video.run(
