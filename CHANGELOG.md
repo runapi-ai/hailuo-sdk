@@ -1,5 +1,21 @@
 # Changelog
 
+## [js/v0.3.0](https://github.com/runapi-ai/hailuo-sdk/releases/tag/js%2Fv0.3.0), [go/v0.3.0](https://github.com/runapi-ai/hailuo-sdk/releases/tag/go%2Fv0.3.0) - 2026-09-29
+
+### Changed
+- Reject a 10-second duration at 1080p for hailuo-2.3-image-to-video-pro and hailuo-2.3-image-to-video-standard through generated contract rules, matching the API.
+  Migration: Use 768p for 10-second Hailuo 2.3 videos, or a 6-second duration at 1080p.
+- Record the server default duration and resolution of Hailuo models in generated contract metadata.
+
+## [ruby/v0.3.0](https://github.com/runapi-ai/hailuo-sdk/releases/tag/ruby%2Fv0.3.0), [python/v0.3.0](https://github.com/runapi-ai/hailuo-sdk/releases/tag/python%2Fv0.3.0) - 2026-09-29
+
+### Changed
+- Reject a 10-second duration at 1080p for hailuo-2.3-image-to-video-pro and hailuo-2.3-image-to-video-standard through generated contract rules, matching the API.
+  Migration: Use 768p for 10-second Hailuo 2.3 videos, or a 6-second duration at 1080p.
+- Record the server default duration and resolution of Hailuo models in generated contract metadata.
+- Enforce the Hailuo 2.3 1080p 10-second rule only through the generated contract rules; the rejection and its message are unchanged.
+
+
 ## [js/v0.2.11](https://github.com/runapi-ai/hailuo-sdk/releases/tag/js%2Fv0.2.11), [go/v0.2.11](https://github.com/runapi-ai/hailuo-sdk/releases/tag/go%2Fv0.2.11) - 2026-09-28
 
 ### Added

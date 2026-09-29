@@ -201,7 +201,7 @@ def test_image_to_video_23_rejects_last_frame():
 
 def test_image_to_video_23_1080p_no_10_second():
     client = HailuoClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="1080p does not support 10-second duration"):
+    with pytest.raises(ValidationError, match="output_resolution must be one of: 768p when duration_seconds is 10 and model is hailuo-2.3-image-to-video-.*"):
         client.image_to_video.create(
             model="hailuo-2.3-image-to-video-standard",
             prompt="hi there",

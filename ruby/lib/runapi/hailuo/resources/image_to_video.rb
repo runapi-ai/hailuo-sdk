@@ -62,9 +62,6 @@ module RunApi
           when "hailuo-2.3-image-to-video-pro", "hailuo-2.3-image-to-video-standard"
             raise Core::ValidationError, "last_frame_image_url is not supported for #{model}" if param(params, :last_frame_image_url)
             raise Core::ValidationError, "prompt_optimizer is not supported for #{model}" if param(params, :prompt_optimizer)
-            if duration_seconds == 10 && output_resolution.to_s == "1080p"
-              raise Core::ValidationError, "1080p does not support 10-second duration"
-            end
           end
         end
       end

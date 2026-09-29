@@ -28,6 +28,6 @@ RSpec.describe RunApi::Hailuo::Resources::ImageToVideo do
         duration_seconds: 10,
         output_resolution: "1080p"
       )
-    }.to raise_error(RunApi::Core::ValidationError, /1080p does not support 10-second duration/)
+    }.to raise_error(RunApi::Core::ValidationError, /output_resolution must be one of: 768p when duration_seconds is 10 and model is hailuo-2.3-image-to-video-\w+/)
   end
 end

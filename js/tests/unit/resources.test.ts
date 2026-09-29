@@ -63,4 +63,21 @@ describe('Hailuo resources', () => {
       },
     });
   });
+
+  it('rejects 1080p with a 10-second duration on 2.3 image-to-video models', async () => {
+    const imageToVideo = new ImageToVideo(mockHttp);
+
+    await expect(
+      imageToVideo.create({
+        model: 'hailuo-2.3-image-to-video-standard',
+        prompt: 'Animate the portrait',
+        first_frame_image_url: 'https://cdn.runapi.ai/public/samples/input.png',
+        duration_seconds: 10,
+        output_resolution: '1080p',
+      })
+    ).rejects.toThrow(
+      'output_resolution must be one of: 768p when duration_seconds is 10 and model is hailuo-2.3-image-to-video-standard'
+    );
+    expect(mockHttp.request).not.toHaveBeenCalled();
+  });
 });

@@ -77,5 +77,3 @@ class ImageToVideo(Resource):
                 raise ValidationError(f"last_frame_image_url is not supported for {model}")
             if params.get("prompt_optimizer"):
                 raise ValidationError(f"prompt_optimizer is not supported for {model}")
-            if duration_seconds == 10 and str(output_resolution) == "1080p":
-                raise ValidationError("1080p does not support 10-second duration")

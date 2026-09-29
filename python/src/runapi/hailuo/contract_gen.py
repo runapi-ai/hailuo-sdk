@@ -46,7 +46,24 @@ CONTRACT = {
                     "enum": ["768p", "1080p"]
                 }
             }
-        }
+        },
+        "rules": [{
+            "enum": {
+                "output_resolution": ["768p"]
+            },
+            "when": {
+                "model": "hailuo-2.3-image-to-video-pro",
+                "duration_seconds": 10
+            }
+        }, {
+            "enum": {
+                "output_resolution": ["768p"]
+            },
+            "when": {
+                "model": "hailuo-2.3-image-to-video-standard",
+                "duration_seconds": 10
+            }
+        }]
     },
     "text-to-video": {
         "models": ["hailuo-02-text-to-video-pro", "hailuo-02-text-to-video-standard"],
