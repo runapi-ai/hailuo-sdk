@@ -32,7 +32,6 @@ module RunApi
         # @return [RunApi::Hailuo::Types::VideoTaskResponse] task creation result with id
         def create(options: nil, **params)
           params = compact_params(params)
-          validate_params!(params)
           request(:post, ENDPOINT, body: params, options: options)
         end
 
@@ -42,27 +41,6 @@ module RunApi
         # @return [RunApi::Hailuo::Types::VideoTaskResponse] current task status
         def get(id, options: nil)
           request(:get, "#{ENDPOINT}/#{id}", options: options)
-        end
-
-        private
-
-        def validate_params!(params)
-          validate_contract!(CONTRACT["image-to-video"], params)
-
-          raise Core::ValidationError, "prompt is required" unless param(params, :prompt)
-
-          model = param(params, :model)
-          duration_seconds = param(params, :duration_seconds)
-          output_resolution = param(params, :output_resolution)
-
-          case model
-          when "hailuo-02-image-to-video-pro"
-            raise Core::ValidationError, "duration_seconds is not supported for #{model}" if duration_seconds
-            raise Core::ValidationError, "output_resolution is not supported for #{model}" if output_resolution
-          when "hailuo-2.3-image-to-video-pro", "hailuo-2.3-image-to-video-standard"
-            raise Core::ValidationError, "last_frame_image_url is not supported for #{model}" if param(params, :last_frame_image_url)
-            raise Core::ValidationError, "prompt_optimizer is not supported for #{model}" if param(params, :prompt_optimizer)
-          end
         end
       end
     end

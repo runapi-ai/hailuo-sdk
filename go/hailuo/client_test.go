@@ -3,7 +3,6 @@ package hailuo
 import (
 	"context"
 	"encoding/json"
-	"strings"
 	"testing"
 
 	"github.com/runapi-ai/core-sdk/go/core"
@@ -40,25 +39,6 @@ func TestTextToVideoCreate(t *testing.T) {
 	body := stub.body.(map[string]any)
 	if body["model"] != "hailuo-02-text-to-video-standard" {
 		t.Fatalf("unexpected model: %v", body["model"])
-	}
-}
-
-func TestImageToVideoRejects23TenSecond1080p(t *testing.T) {
-	stub := &stubHTTPClient{}
-	client := NewClientWithHTTP(stub)
-	_, err := client.ImageToVideo.Create(context.Background(), ImageToVideoParams{
-		Model:              ModelImageToVideoStd23,
-		Prompt:             "Animate the portrait",
-		FirstFrameImageURL: "https://cdn.runapi.ai/public/samples/input.png",
-		DurationSeconds:    10,
-		OutputResolution:   "1080p",
-	})
-	want := "output_resolution must be one of: 768p when duration_seconds is 10 and model is hailuo-2.3-image-to-video-standard"
-	if err == nil || !strings.Contains(err.Error(), want) {
-		t.Fatalf("unexpected error: %v", err)
-	}
-	if stub.body != nil {
-		t.Fatalf("expected no request body, got: %v", stub.body)
 	}
 }
 

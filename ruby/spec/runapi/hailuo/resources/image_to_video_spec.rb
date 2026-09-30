@@ -18,16 +18,4 @@ RSpec.describe RunApi::Hailuo::Resources::ImageToVideo do
     result = resource.create(**params)
     expect(result.id).to eq("task-i2v-1")
   end
-
-  it "rejects 1080p with 10-second duration on 2.3 models" do
-    expect {
-      resource.create(
-        model: "hailuo-2.3-image-to-video-standard",
-        prompt: "Animate the portrait",
-        first_frame_image_url: "https://cdn.runapi.ai/public/samples/input.png",
-        duration_seconds: 10,
-        output_resolution: "1080p"
-      )
-    }.to raise_error(RunApi::Core::ValidationError, /output_resolution must be one of: 768p when duration_seconds is 10 and model is hailuo-2.3-image-to-video-\w+/)
-  end
 end

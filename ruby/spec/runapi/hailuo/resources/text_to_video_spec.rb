@@ -14,10 +14,4 @@ RSpec.describe RunApi::Hailuo::Resources::TextToVideo do
     result = resource.create(**params)
     expect(result.id).to eq("task-t2v-1")
   end
-
-  it "rejects invalid duration_seconds for pro model" do
-    expect {
-      resource.create(model: "hailuo-02-text-to-video-pro", prompt: "x", duration_seconds: 6)
-    }.to raise_error(RunApi::Core::ValidationError, /duration_seconds is not supported/)
-  end
 end

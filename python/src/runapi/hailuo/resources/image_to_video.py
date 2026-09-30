@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
-from runapi.core import Resource, ValidationError, RequestOptions
+from runapi.core import Resource, RequestOptions
 
-from ..contract_gen import CONTRACT
 from ..types import (
     CompletedVideoTaskResponse,
     VideoTaskResponse,
@@ -43,7 +42,6 @@ class ImageToVideo(Resource):
             The task creation result with an id.
         """
         compacted = self._compact_params(params)
-        self._validate_params(compacted)
         return self._request("post", self.ENDPOINT, body=compacted, options=options)
 
     def get(self, id: str, options: Optional[RequestOptions] = None) -> Any:
@@ -56,24 +54,3 @@ class ImageToVideo(Resource):
             The current task status.
         """
         return self._request("get", f"{self.ENDPOINT}/{id}", options=options)
-
-    def _validate_params(self, params: Dict[str, Any]) -> None:
-        self._validate_contract(CONTRACT["image-to-video"], params)
-
-        if not params.get("prompt"):
-            raise ValidationError("prompt is required")
-
-        model = params.get("model")
-        duration_seconds = params.get("duration_seconds")
-        output_resolution = params.get("output_resolution")
-
-        if model == "hailuo-02-image-to-video-pro":
-            if duration_seconds:
-                raise ValidationError(f"duration_seconds is not supported for {model}")
-            if output_resolution:
-                raise ValidationError(f"output_resolution is not supported for {model}")
-        elif model in ("hailuo-2.3-image-to-video-pro", "hailuo-2.3-image-to-video-standard"):
-            if params.get("last_frame_image_url"):
-                raise ValidationError(f"last_frame_image_url is not supported for {model}")
-            if params.get("prompt_optimizer"):
-                raise ValidationError(f"prompt_optimizer is not supported for {model}")

@@ -114,28 +114,6 @@ class HailuoClientTest {
             RequestOptions.builder().pollingInterval(Duration.ofMillis(1)).pollingMaxWait(Duration.ofSeconds(1)).build()));
   }
 
-  @Test
-  void createRejectsTenSecond1080pOn23ImageToVideo() {
-    CapturingTransport transport = new CapturingTransport("{\"id\":\"task\"}");
-    HailuoClient client = HailuoClient.builder().apiKey("sk-test").transport(transport).build();
-
-    ValidationException error = assertThrows(
-        ValidationException.class,
-        () -> client.imageToVideo().create(
-            ImageToVideoParams.builder()
-                .model(ImageToVideoModel.HAILUO_2_3_IMAGE_TO_VIDEO_STANDARD)
-                .prompt("Animate the portrait")
-                .firstFrameImageUrl("https://cdn.runapi.ai/public/samples/input.png")
-                .durationSeconds(10)
-                .outputResolution("1080p")
-                .build()));
-
-    assertEquals(
-        "output_resolution must be one of: 768p when duration_seconds is 10 and model is hailuo-2.3-image-to-video-standard",
-        error.getMessage());
-    assertEquals(null, transport.request);
-  }
-
     @Test
     void coversImagetovideoResourceMethods() {
       CapturingTransport createTransport = new CapturingTransport("{\"id\":\"task_image_to_video\",\"status\":\"processing\"}");
